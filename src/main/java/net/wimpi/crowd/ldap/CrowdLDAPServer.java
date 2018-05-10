@@ -319,7 +319,9 @@ public class CrowdLDAPServer {
       server.addExtendedOperationHandler(new StartTlsHandler());
 
     }    
-    
+
+    long maxSizeLimit = Long.parseLong(m_ServerConfig.getProperty(CONFIG_KEY_MAXSIZELIMIT,"100"));
+    server.setMaxSizeLimit(maxSizeLimit);
     server.setTransports(t);
     server.setDirectoryService(service);
     server.start();
@@ -376,5 +378,7 @@ public class CrowdLDAPServer {
   
   private static final String CONFIG_KEY_EMULATE_MEMBEROF = "emulate.ad.memberof";  
   private static final String CONFIG_KEY_INCLUDE_NESTED = "emulate.ad.include.nested";  
+
+  private static final String CONFIG_KEY_MAXSIZELIMIT = "maxsizelimit";
 
 }//class CrowdLDAPServer
